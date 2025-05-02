@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ELARE | Doğal Yaşam Markası</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Marcellus&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Playfair Display', serif;
+      background: linear-gradient(to bottom, #f4f0ea, #efe8dd);
+      color: #4e463b;
+    }
+
+    header {
+      background-color: #8c7b6d;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 3em;
+      color: #fff;
+      letter-spacing: 2px;
+    }
+
+    header p {
+      margin: 10px 0 0;
+      font-size: 1.4em;
+      color: #fcebd5;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      background-color: #a9c1a3;
+      padding: 14px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #3d3d3d;
+      font-weight: bold;
+      font-size: 1.1em;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    nav a:hover {
+      color: #5f4b3b;
+    }
+
+    .banner {
+      background: url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6') center/cover no-repeat;
+      height: 320px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2.5em;
+      font-weight: bold;
+      text-shadow: 2px 2px 5px #000;
+      margin: 20px;
+    }
+
+    .urun-listesi {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2em;
+      padding: 0 20px;
+    }
+
+    .urun {
+      background-color: rgba(255, 255, 255, 0.92);
+      border: 1px dashed #c2b2a3;
+      border-radius: 14px;
+      padding: 1.5em;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      width: 260px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .urun:hover {
+      transform: translateY(-5px);
+    }
+
+    .urun button {
+      background-color: #a27c56;
+      color: white;
+      border: none;
+      padding: 0.6em 1.2em;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background-color 0.3s ease;
+    }
+
+    .urun button:hover {
+      background-color: #8b6845;
+    }
+
+    #sepet {
+      margin-top: 40px;
+      background-color: rgba(245, 239, 229, 0.9);
+      padding: 30px;
+      border-radius: 14px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      display: none;
+    }
+
+    #sepet ul { list-style: none; padding: 0; }
+    #sepet ul li { margin-bottom: 10px; }
+
+    #odemeFormu {
+      display: none;
+      margin-top: 20px;
+    }
+
+    #odemeFormu input, #odemeFormu button {
+      padding: 0.7em;
+      margin-top: 10px;
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-family: 'Marcellus', serif;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .iletisim-bilgileri {
+      margin-top: 50px;
+      background-color: #e7dfd3;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 1.1em;
+      font-weight: bold;
+    }
+  </style>
+
+  <script>
+    function sepeteEkle(urunAdi) {
+      const sepet = document.getElementById('sepet');
+      const liste = document.getElementById('sepetListesi');
+
+      if (!liste) return;
+
+      const item = document.createElement('li');
+      item.textContent = urunAdi;
+      liste.appendChild(item);
+      sepet.style.display = 'block';
+    }
+
+    function odemeFormunuGoster() {
+      const form = document.getElementById('odemeFormu');
+      if (form) form.style.display = 'block';
+    }
+
+    function toggleSection(sectionId) {
+      const allSections = ["vizyon", "misyon", "manifesto"];
+      allSections.forEach(id => {
+        const section = document.getElementById(id);
+        if (section) section.style.display = id === sectionId ? "block" : "none";
+      });
+
+      const active = document.getElementById(sectionId);
+      if (active) {
+        active.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const sections = ["vizyon", "misyon", "manifesto"];
+      sections.forEach(id => {
+        const section = document.getElementById(id);
+        if (section) section.style.display = "none";
+      });
+
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 50);
+    });
+  </script>
+</head>
+
+<body>
+  <header>
+    <h1>ELARE</h1>
+    <p>Bir Tohumla Başlar, Ruhuna Dokunur</p>
+  </header>
+
+  <nav>
+    <a onclick="toggleSection('vizyon')">Vizyon</a>
+    <a onclick="toggleSection('misyon')">Misyon</a>
+    <a onclick="toggleSection('manifesto')">Manifesto</a>
+  </nav>
+
+  <div class="banner">Doğadan İlham Al</div>
+
+  <div class="urun-listesi">
+    <div class="urun">
+      <h3>Granola Bowl</h3>
+      <p>El yapımı, sağlıklı granola kasesi</p>
+      <span>120 TL</span>
+      <button onclick="sepeteEkle('Granola Bowl - 120 TL')">Sepete Ekle</button>
+    </div>
+    <div class="urun">
+      <h3>Bitkisel Çay</h3>
+      <p>Doğal içerikli, şifa dolu bitki çayı</p>
+      <span>90 TL</span>
+      <button onclick="sepeteEkle('Bitkisel Çay - 90 TL')">Sepete Ekle</button>
+    </div>
+    <div class="urun">
+      <h3>Protein Bowl</h3>
+      <p>Yüksek proteinli sebze bowl</p>
+      <span>140 TL</span>
+      <button onclick="sepeteEkle('Protein Bowl - 140 TL')">Sepete Ekle</button>
+    </div>
+  </div>
+
+  <div id="sepet">
+    <h3>Sepetiniz</h3>
+    <ul id="sepetListesi"></ul>
+    <button onclick="odemeFormunuGoster()">Ödemeye Geç</button>
+    <form id="odemeFormu" action="https://sandbox-merchant.iyzipay.com/paymentform/authenticate" method="POST">
+      <input type="text" name="fullname" placeholder="Ad Soyad" required />
+      <input type="email" name="email" placeholder="E-posta" required />
+      <input type="text" name="address" placeholder="Adres" required />
+      <button type="submit">Ödemeyi Tamamla</button>
+    </form>
+  </div>
+
+  <section id="vizyon">
+    <h2>Vizyonumuz</h2>
+    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" alt="vizyon" style="width:100%; border-radius:12px; margin-top:15px;">
+    <p>Doğadan ilham alan, sürdürülebilirliği yaşamın merkezine koyan ve bohem sadeliği benimseyen bir yaşam markası olarak; dünya genelinde sağlıklı, estetik ve etik üretimi savunan öncü bir topluluk yaratmak.</p>
+  </section>
+
+  <section id="misyon">
+    <h2>Misyonumuz</h2>
+    <img src="https://images.unsplash.com/photo-1559223607-0dba2b08da3f" alt="misyon" style="width:100%; border-radius:12px; margin-top:15px;">
+    <ul>
+      <li>Doğal ve güvenilir içeriklerle beden ve ruh sağlığını desteklemek</li>
+      <li>Yerel üreticileri ve kadın girişimciliğini desteklemek</li>
+      <li>Doğaya zarar vermeyen üretimle sürdürülebilir bir model kurmak</li>
+      <li>Estetikten ödün vermeden sade yaşamın bir parçası olmak</li>
+    </ul>
+  </section>
+
+  <section id="manifesto">
+    <h2>Manifestomuz</h2>
+    <img src="https://images.unsplash.com/photo-1611095973515-e9c56e06ebc5" alt="manifesto" style="width:100%; border-radius:12px; margin-top:15px;">
+    <p>
+      Biz doğaya inanıyoruz. Toprağın her tanesinde bir umut, her tohumda bir gelecek var.<br>
+      Sadelik, bizim için bir estetik değil, bir yaşam biçimi.<br>
+      Modern dünyanın hızına karşı, bohem bir duruş sergiliyoruz.<br>
+      Kadın emeğini, yerel üretimi ve etik duruşu destekliyoruz.<br>
+      Elaré, bir markadan öte; doğaya bağlı, ilham veren bir yolculuktur.
+    </p>
+  </section>
+
+  <div class="iletisim-bilgileri" id="iletisim">
+    <p>📧 E-posta: elare@gmail.com</p>
+    <p>📸 Instagram: @elare.kitchen</p>
+    <p>📞 Telefon: 0546 577 27 56</p>
+  </div>
+
+  <footer style="text-align:center; background-color:#8c7b6d; color:white; padding:20px; margin-top:40px;">
+    © 2025 ELARE | Doğal ve Etik Yaşam İçin
+  </footer>
+</body>
+</html>
